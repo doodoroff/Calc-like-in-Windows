@@ -1,0 +1,9 @@
+# ignore dir
+obj/
+Properties/
+bin/
+
+# ignore file
+App.config
+Calc.resx
+Calc.csproj
