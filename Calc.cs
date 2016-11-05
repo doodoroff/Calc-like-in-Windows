@@ -68,267 +68,77 @@ namespace Calc
             }
             return result;
         }
-        /*
+        
         public void ButtonInput (string argument, string digit)
         {
-            if (argument == null)
+            if (argument == null) 
             {
-                argument = argument + digit;
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+                this.argument = argument + digit;
+                this.secondExpressionMember = this.argument;
+                textBoxOutput.Text = this.argument;
                 return;
             }
 
-            if (argument.Contains(decimalSeparator))
+            if (argument.Contains(decimalSeparator)) // this branch allows to work with arguments that starts with "0."
             {
-                argument = argument + digit;
+                this.argument = argument + digit;
             }
 
-            else if (argument.StartsWith("0"))
-            {
-                argument = digit;
-            }
-            else
-            {
-                argument = argument + digit;
-            }
-            secondExpressionMember = argument;
-            textBoxOutput.Text = argument;
+                else if (argument.StartsWith("0")) // this branch needs to avoid several leading zeros
+                {
+                    this.argument = digit;
+                }
+                    else
+                    {
+                        this.argument = argument + digit;
+                    }
+            this.secondExpressionMember = this.argument;
+            textBoxOutput.Text = this.argument;
         }
-        */
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "1";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "1";
-                }
-
-                   else if (argument.StartsWith("0"))
-                   {
-                       argument = "1";
-                   }
-                      else
-                        {
-                            argument = argument + "1";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "1");
         } 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "2";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "2";
-                }
-                   else if (argument.StartsWith("0"))
-                    {
-                        argument = "2";
-                    }
-                        else
-                        {
-                            argument = argument + "2";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "2");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "3";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "3";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "3";
-                    }
-                        else
-                        {
-                            argument = argument + "3";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "3");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "4";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "4";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "4";
-                    }
-                        else
-                        {
-                            argument = argument + "4";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "4");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "5";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "5";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "5";
-                    }
-                        else
-                        {
-                            argument = argument + "5";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "5");
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "6";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "6";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "6";
-                    }
-                        else
-                        {
-                            argument = argument + "6";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "6");
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "7";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "7";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "7";
-                    }
-                        else
-                        {
-                            argument = argument + "7";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "7");
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "8";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "8";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "8";
-                    }
-                        else
-                        {
-                            argument = argument + "8";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "8");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (argument == null)
-            {
-                argument = argument + "9";
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
-                return;
-            }
-
-                if (argument.Contains(decimalSeparator))
-                {
-                    argument = argument + "9";
-                }
-                    else if (argument.StartsWith("0"))
-                    {
-                        argument = "9";
-                    }
-                        else
-                        {
-                            argument = argument + "9";
-                        }
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+            ButtonInput(argument, "9");
         }
 
         private void buttonZero_Click(object sender, EventArgs e)
