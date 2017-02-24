@@ -13,13 +13,12 @@ namespace Calc
 
     public partial class calcForm : Form
     {
-        string firstExpressionMember = null;
-        string secondExpressionMember = null;
-        string opType = null;
-        string argument = null;
-        string argumentContainer = null;
-        bool checkOpButtonHit = false;
-        string decimalSeparator = System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator; //Decimal separator for current culture
+        string firstMemberOfExpression = null;
+        string secondMemberOfExpression = null;
+        string operationTypeSign = null;
+        string number = null;
+        bool operationTypeButtonIsBeanPushedBefore = false;
+        string decimalSeparator = System.Globalization.NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator;
 
         public calcForm()
         {
@@ -31,333 +30,250 @@ namespace Calc
             textBoxOutput.Text = "Wellcome to Calc";
         }
 
-        public double SolveTask (string digit1, string digit2, string opType)
+        double SolveTask (string firstMemberOfExpression, string secondMemberOfExpression)
         {
-            double result = 0; // inside varaible
+            double result = 0;
 
-            switch (opType)
+            switch (operationTypeSign)
             {
                 case "+":
                     {
-                        result = Double.Parse(digit1) + Double.Parse(digit2);
+                        result = Double.Parse(firstMemberOfExpression) + Double.Parse(secondMemberOfExpression);
                         break;
                     }
 
                 case "-":
                     {
-                        result = Double.Parse(digit1) - Double.Parse(digit2);
+                        result = Double.Parse(firstMemberOfExpression) - Double.Parse(secondMemberOfExpression);
                         break;
                     }
 
                 case "*":
                     {
-                        result = Double.Parse(digit1) * Double.Parse(digit2);
+                        result = Double.Parse(firstMemberOfExpression) * Double.Parse(secondMemberOfExpression);
                         break;
                     }
                 case "/":
                     {
-                        if (digit2 == "0")
+                        try
                         {
-                            MessageBox.Show("Zero devisor error !");
-                            result = 0;
-                            break;
+                            result = Double.Parse(firstMemberOfExpression) / Double.Parse(secondMemberOfExpression);
                         }
-                        result = Double.Parse(digit1) / Double.Parse(digit2);
+                        catch (Exception e)
+                        {
+                            textBoxOutput.Text = e.Message;
+                            result = 0;
+                        }
+
                         break;
                     }
             }
             return result;
         }
         
-        public void ButtonInput (string argument, string digit)
-        {
-            if (argument == null) 
-            {
-                this.argument = argument + digit;
-                this.secondExpressionMember = this.argument;
-                textBoxOutput.Text = this.argument;
-                return;
-            }
-
-            if (argument.Contains(decimalSeparator)) // this branch allows to work with arguments that starts with "0."
-            {
-                this.argument = argument + digit;
-            }
-
-                else if (argument.StartsWith("0")) // this branch needs to avoid several leading zeros
-                {
-                    this.argument = digit;
-                }
-                    else
-                    {
-                        this.argument = argument + digit;
-                    }
-            this.secondExpressionMember = this.argument;
-            textBoxOutput.Text = this.argument;
-        }
-        
         private void button1_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "1");
+            HandleDigitButtonInput("1");
         } 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "2");
+            HandleDigitButtonInput("2");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "3");
+            HandleDigitButtonInput("3");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "4");
+            HandleDigitButtonInput("4");
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "5");
+            HandleDigitButtonInput("5");
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "6");
+            HandleDigitButtonInput("6");
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "7");
+            HandleDigitButtonInput("7");
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "8");
+            HandleDigitButtonInput("8");
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            ButtonInput(argument, "9");
+            HandleDigitButtonInput("9");
         }
 
         private void buttonZero_Click(object sender, EventArgs e)
         {
-            if (argument == "0") // this check needs to avoid leading zeros before digit
-            {
-                return;
-            }
-
-            argument = argument + "0";
-            secondExpressionMember = argument;
-            textBoxOutput.Text = argument;
-        }
-
-        private void floatingPoint_Click(object sender, EventArgs e)
-        {
-            if (argument == null) // checing of the argument value to avoid String method exception
-            {
-                argument = "0" + decimalSeparator;
-                textBoxOutput.Text = argument;
-            }
-
-            if (argument.Contains(decimalSeparator)) // this check needs to avoid appearance of several decimal seporator signs in digit
-            {
-                return;
-            }
-
-            argument = argument + decimalSeparator;
-            textBoxOutput.Text = argument;
-        }
-
-        private void buttonPlus_Click(object sender, EventArgs e)
-        {
-                if (checkOpButtonHit != false) // this branch executes if the operation type button been already clicked. It uses to repeat math operation each time when the operation type button hits
-                    {
-                        argument = Convert.ToString(SolveTask(firstExpressionMember, secondExpressionMember, opType)); // in this branch argument value must be taken from SolveTask method
-                        firstExpressionMember = argument;
-                        secondExpressionMember = "0";
-                        opType = "+";
-                        argument = argument + " + ";
-                        textBoxOutput.Text = argument;
-                        argument = null;
-                        return;
-                    }
-            // this code executes if operation button clicked for the first time
-            if (argument != null) 
-            {
-                firstExpressionMember = argument;
-                argument = argument + " + ";
-            }
-            else
-            {
-                firstExpressionMember = argumentContainer; // if argument equal null, digit2 value gets from argumentContainer, this provides ability to continiue math operations with value that recived after the equal button click
-                argument = argumentContainer + " + ";
-            }
-            secondExpressionMember = "0"; // this provides inputing of second expression member from digit buttons clicking after the operation type button been clicked 
-            opType = "+";
-            checkOpButtonHit = true;
-            textBoxOutput.Text = argument;
-            argumentContainer = null;
-            argument = null;
-        }
-
-        private void buttonMinus_Click(object sender, EventArgs e)
-        {
-                if (checkOpButtonHit != false)
-                {
-                    argument = Convert.ToString(SolveTask(firstExpressionMember, secondExpressionMember, opType));
-                    firstExpressionMember = argument;
-                    secondExpressionMember = "0";
-                    opType = "-";
-                    argument = argument + " - ";
-                    textBoxOutput.Text = argument;
-                    argument = null;
-                    return;
-                }
-            if (argument != null)
-            {
-                firstExpressionMember = argument;
-                argument = argument + " - ";
-            }
-            else
-            {
-                firstExpressionMember = argumentContainer;
-                argument = argumentContainer + " - ";
-            }
-            secondExpressionMember = "0";
-            opType = "-";
-            checkOpButtonHit = true;
-            textBoxOutput.Text = argument;
-            argumentContainer = null;
-            argument = null;
-        } //same as buttonPlus_Click, but with "-" operation type sign
-
-        private void buttonMult_Click(object sender, EventArgs e)
-        {
-                if (checkOpButtonHit != false)
-                {
-                    argument = Convert.ToString(SolveTask(firstExpressionMember, secondExpressionMember, opType));
-                    firstExpressionMember = argument;
-                    secondExpressionMember = "1";
-                    opType = "*";
-                    argument = argument + " * ";
-                    textBoxOutput.Text = argument;
-                    argument = null;
-                    return;
-                }
-            if (argument != null)
-            {
-                firstExpressionMember = argument;
-                argument = argument + " * ";
-            }
-            else
-            {
-                firstExpressionMember = argumentContainer;
-                argument = argumentContainer + " * ";
-            }
-            secondExpressionMember = "1"; // in this operation type method digit1 gets "1" instead "0" to avoid expression value loss after zero multiplication
-            opType = "*";
-            checkOpButtonHit = true;
-            textBoxOutput.Text = argument;
-            argumentContainer = null;
-            argument = null;
-        } //got some distinctions from buttonPlus_Click method
-
-        private void buttonDiv_Click(object sender, EventArgs e)
-        {
-                if (checkOpButtonHit != false)
-                {
-                    argument = Convert.ToString(SolveTask(firstExpressionMember, secondExpressionMember, opType));
-                    firstExpressionMember = argument;
-                    secondExpressionMember = "1";
-                    opType = "/";
-                    argument = argument + " / ";
-                    textBoxOutput.Text = argument;
-                    argument = null;
-                    return;
-                }
-
-            if (argument != null)
-            {
-                firstExpressionMember = argument;
-                argument = argument + " / ";
-            }
-            else
-            {
-                firstExpressionMember = argumentContainer;
-                argument = argumentContainer + " / ";
-            }
-            secondExpressionMember = "1"; // in this operation type method digit1 gets "1" instead "0" to avoid zero divisor exception 
-            opType = "/";
-            checkOpButtonHit = true;
-            textBoxOutput.Text = argument;
-            argumentContainer = null;
-            argument = null;
-        } //got some distinctions from buttonPlus_Click method
-
-        private void buttonEql_Click(object sender, EventArgs e)
-        {
-            checkOpButtonHit = false;
-            argument = Convert.ToString(SolveTask(firstExpressionMember, secondExpressionMember, opType));
-            firstExpressionMember = argument; // this operation writes result of SolveTask method which contains in argument variable to first expression member, this provides ability of operating with expression result value after "equal" button been clicked
-            argumentContainer = argument; // this operation writes result of SolveTask method which contains in argument variable to argumentContainer, this provides math operations with value recived after the "equal" button click
-            textBoxOutput.Text = argument;
-            argument = null;
-           
-        }
-
-        private void buttonClear_Click(object sender, EventArgs e)
-        {
-            argument = null;
-            argumentContainer = null;
-            textBoxOutput.Text = "0";
-            firstExpressionMember = "0";
-            secondExpressionMember = "0";
-            checkOpButtonHit = false;
+            HandleDigitButtonInput("0");
         }
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
 
-            if (argument == null)
+            if (number == null)
             {
-                    if (argumentContainer == null)
-                    {
-                        argument = "-";
-                        textBoxOutput.Text = argument;
-                        return;
-                    }
-
-                    if (argumentContainer.Contains("-"))
-                    {
-                        argument = argumentContainer.Remove(0, 1); // this provides ability to change argument's value to negative and back by clicking the "-" button
-                        secondExpressionMember = argument;
-                        textBoxOutput.Text = argument;
-                        return;
-                    }
-
-                    argument = "-" + argumentContainer;
-                    textBoxOutput.Text = argument;
-                    return;
-            }
-            // this code executes if argument isn't null
-            if (argument.Contains("-"))
-            {
-                argument = argument.Remove(0, 1);
-                secondExpressionMember = argument;
-                textBoxOutput.Text = argument;
+                number = "-";
+                textBoxOutput.Text = number;
                 return;
             }
 
-            argument = "-" + argument;
-            secondExpressionMember = argument;
-            textBoxOutput.Text = argument;
+            if (number.Contains("-"))
+            {
+                number = number.Remove(0, 1);
+                InitializeAndShowExpressionMember();
+                return;
+            }
+
+            number = "-" + number;
+            InitializeAndShowExpressionMember();
         }
 
-    
-    }
+        void HandleDigitButtonInput(string digitOnButton)
+        {
+            if (number == null) // checing of the typed number value to avoid String method exception
+            {
+                number += digitOnButton;
+                InitializeAndShowExpressionMember();
+                return;
+            }
 
-   
+            if (number.Contains(decimalSeparator)) // this branch is for working with typed number that begins with "0."
+            {
+                number += digitOnButton;
+            }
+            else if (number.StartsWith("0")) // this branch needs to avoid several leading zeros
+            {
+                number = digitOnButton;
+            }
+                 else
+                 {
+                     number += digitOnButton;
+                 }
+            InitializeAndShowExpressionMember();
+        }
+
+        void InitializeAndShowExpressionMember()
+        {
+            secondMemberOfExpression = number;
+            textBoxOutput.Text = secondMemberOfExpression;
+        }
+
+        private void floatingPoint_Click(object sender, EventArgs e)
+        {
+            if (number == null) // checing of the typed number value to avoid String method exception
+            {
+                number = "0" + decimalSeparator;
+                textBoxOutput.Text = number;
+            }
+
+            if (number.Contains(decimalSeparator)) // this check needs to avoid appearance of several decimal seporators in digit
+            {
+                return;
+            }
+
+            number += decimalSeparator;
+            textBoxOutput.Text = number;
+        }
+
+        private void buttonPlus_Click(object sender, EventArgs e)
+        {
+            HandleOperationButtonClick("+");
+        }
+
+        private void buttonMinus_Click(object sender, EventArgs e)
+        {
+            HandleOperationButtonClick("-");
+        }
+
+        private void buttonMult_Click(object sender, EventArgs e)
+        {
+            HandleOperationButtonClick("*");
+        }
+
+        private void buttonDiv_Click(object sender, EventArgs e)
+        {
+            HandleOperationButtonClick("/");
+        }
+
+        void HandleOperationButtonClick(string operationTypeSign)
+        {
+            if (operationTypeButtonIsBeanPushedBefore) // this branch is for doing math operation each time when the operation type button hits
+            {
+                number = Convert.ToString(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
+                buildAndShowPartOfExpression(operationTypeSign);
+                number = null;
+                return;
+            }
+            
+            buildAndShowPartOfExpression(operationTypeSign);
+            number = null;
+            operationTypeButtonIsBeanPushedBefore = true;
+        }
+
+        void buildAndShowPartOfExpression(string operationTypeSign)
+        {
+            PerformFirstMemberOfExpression();
+            PerformDefaultSecondMemberOfExpression(operationTypeSign);  // this method needs to allow the select of math operation type that will be executed on calculation result
+            this.operationTypeSign = operationTypeSign;
+            textBoxOutput.Text = firstMemberOfExpression + " " + operationTypeSign;
+        }
+        
+        void PerformFirstMemberOfExpression()
+        {
+            if (number == null || number == "-")
+            {
+                firstMemberOfExpression = "0";
+            }
+            else
+            {
+               firstMemberOfExpression = number;
+            }
+        }
+
+        void PerformDefaultSecondMemberOfExpression(string operationTypeSign)
+        {
+            if (operationTypeSign == "+" || operationTypeSign == "-")
+            {
+                secondMemberOfExpression = "0";
+            }
+            else
+            {
+                secondMemberOfExpression = "1";
+            }
+        }
+
+        private void buttonEql_Click(object sender, EventArgs e)
+        {
+            number = Convert.ToString(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
+            textBoxOutput.Text = number;
+            firstMemberOfExpression = number; // this needs to continiue operations with calculated value
+            operationTypeButtonIsBeanPushedBefore = false;
+           
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            number = null;
+            textBoxOutput.Text = "0";
+            firstMemberOfExpression = "0";
+            secondMemberOfExpression = "0";
+            operationTypeButtonIsBeanPushedBefore = false;
+        }
+  
+    }
 
 }
