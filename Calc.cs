@@ -27,7 +27,12 @@ namespace Calc
 
         private void calcForm_Load(object sender, EventArgs e)
         {
-            textBoxOutput.Text = "Wellcome to Calc";
+            ShowOnDisplay("Welcome to Calc App");
+        }
+
+        void ShowOnDisplay(string infoToShow)
+        {
+            textBoxOutput.Text = infoToShow;
         }
 
         double SolveTask (string firstMemberOfExpression, string secondMemberOfExpression)
@@ -55,16 +60,7 @@ namespace Calc
                     }
                 case "/":
                     {
-                        try
-                        {
-                            result = Double.Parse(firstMemberOfExpression) / Double.Parse(secondMemberOfExpression);
-                        }
-                        catch (Exception e)
-                        {
-                            textBoxOutput.Text = e.Message;
-                            result = 0;
-                        }
-
+                        result = Double.Parse(firstMemberOfExpression) / Double.Parse(secondMemberOfExpression);
                         break;
                     }
             }
@@ -127,7 +123,7 @@ namespace Calc
             if (number == null)
             {
                 number = "-";
-                textBoxOutput.Text = number;
+                ShowOnDisplay(number);
                 return;
             }
 
@@ -159,6 +155,10 @@ namespace Calc
             {
                 number = digitOnButton;
             }
+            else if (number.StartsWith("-0")) // this branch needs to avoid several leading zeroes after negative sign
+            {
+                number = "-" + digitOnButton;
+            }
                  else
                  {
                      number += digitOnButton;
@@ -169,7 +169,7 @@ namespace Calc
         void InitializeAndShowExpressionMember()
         {
             secondMemberOfExpression = number;
-            textBoxOutput.Text = secondMemberOfExpression;
+            ShowOnDisplay(secondMemberOfExpression);
         }
 
         private void floatingPoint_Click(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace Calc
             if (number == null) // checing of the typed number value to avoid String method exception
             {
                 number = "0" + decimalSeparator;
-                textBoxOutput.Text = number;
+                ShowOnDisplay(number);
             }
 
             if (number.Contains(decimalSeparator)) // this check needs to avoid appearance of several decimal seporators in digit
@@ -186,7 +186,7 @@ namespace Calc
             }
 
             number += decimalSeparator;
-            textBoxOutput.Text = number;
+            ShowOnDisplay(number);
         }
 
         private void buttonPlus_Click(object sender, EventArgs e)
@@ -213,7 +213,7 @@ namespace Calc
         {
             if (operationTypeButtonIsBeanPushedBefore) // this branch is for doing math operation each time when the operation type button hits
             {
-                number = Convert.ToString(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
+                number = HandleResult(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
                 buildAndShowPartOfExpression(operationTypeSign);
                 number = null;
                 return;
@@ -224,12 +224,27 @@ namespace Calc
             operationTypeButtonIsBeanPushedBefore = true;
         }
 
+        string HandleResult(double calculationResult)
+        {
+            if (double.IsInfinity(calculationResult) || double.IsNaN(calculationResult))
+            {
+                ImplementMeasuresToWrongCalculationResult();
+                return "imposible to divide by zero";
+            }
+            return Convert.ToString(calculationResult);
+        }
+
+        void ImplementMeasuresToWrongCalculationResult()
+        {
+            groupBox.Enabled = false;
+        }
+
         void buildAndShowPartOfExpression(string operationTypeSign)
         {
             PerformFirstMemberOfExpression();
             PerformDefaultSecondMemberOfExpression(operationTypeSign);  // this method needs to allow the select of math operation type that will be executed on calculation result
             this.operationTypeSign = operationTypeSign;
-            textBoxOutput.Text = firstMemberOfExpression + " " + operationTypeSign;
+            ShowOnDisplay(firstMemberOfExpression + " " + operationTypeSign);
         }
         
         void PerformFirstMemberOfExpression()
@@ -258,8 +273,8 @@ namespace Calc
 
         private void buttonEql_Click(object sender, EventArgs e)
         {
-            number = Convert.ToString(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
-            textBoxOutput.Text = number;
+            number = HandleResult(SolveTask(firstMemberOfExpression, secondMemberOfExpression));
+            ShowOnDisplay(number);
             firstMemberOfExpression = number; // this needs to continiue operations with calculated value
             operationTypeButtonIsBeanPushedBefore = false;
            
@@ -268,10 +283,11 @@ namespace Calc
         private void buttonClear_Click(object sender, EventArgs e)
         {
             number = null;
-            textBoxOutput.Text = "0";
+            ShowOnDisplay("0");
             firstMemberOfExpression = "0";
             secondMemberOfExpression = "0";
             operationTypeButtonIsBeanPushedBefore = false;
+            groupBox.Enabled = true;
         }
   
     }

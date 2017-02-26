@@ -47,6 +47,8 @@
             this.buttonClear = new System.Windows.Forms.Button();
             this.floatingPoint = new System.Windows.Forms.Button();
             this.buttonSign = new System.Windows.Forms.Button();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxOutput
@@ -59,7 +61,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 60);
+            this.button1.Location = new System.Drawing.Point(6, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 32);
             this.button1.TabIndex = 1;
@@ -69,7 +71,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(50, 60);
+            this.button2.Location = new System.Drawing.Point(44, 9);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(32, 32);
             this.button2.TabIndex = 2;
@@ -79,7 +81,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(88, 60);
+            this.button3.Location = new System.Drawing.Point(82, 10);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 32);
             this.button3.TabIndex = 3;
@@ -89,7 +91,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 98);
+            this.button4.Location = new System.Drawing.Point(6, 48);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(32, 32);
             this.button4.TabIndex = 4;
@@ -99,7 +101,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(50, 98);
+            this.button5.Location = new System.Drawing.Point(44, 48);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(32, 32);
             this.button5.TabIndex = 5;
@@ -109,7 +111,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(88, 98);
+            this.button6.Location = new System.Drawing.Point(82, 48);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(32, 32);
             this.button6.TabIndex = 6;
@@ -119,7 +121,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(12, 136);
+            this.button7.Location = new System.Drawing.Point(6, 86);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(32, 32);
             this.button7.TabIndex = 7;
@@ -129,7 +131,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(50, 136);
+            this.button8.Location = new System.Drawing.Point(44, 86);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(32, 32);
             this.button8.TabIndex = 8;
@@ -139,7 +141,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(88, 136);
+            this.button9.Location = new System.Drawing.Point(82, 86);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(32, 32);
             this.button9.TabIndex = 9;
@@ -149,7 +151,7 @@
             // 
             // buttonZero
             // 
-            this.buttonZero.Location = new System.Drawing.Point(12, 174);
+            this.buttonZero.Location = new System.Drawing.Point(6, 124);
             this.buttonZero.Name = "buttonZero";
             this.buttonZero.Size = new System.Drawing.Size(32, 32);
             this.buttonZero.TabIndex = 10;
@@ -159,7 +161,7 @@
             // 
             // buttonMinus
             // 
-            this.buttonMinus.Location = new System.Drawing.Point(142, 60);
+            this.buttonMinus.Location = new System.Drawing.Point(120, 9);
             this.buttonMinus.Name = "buttonMinus";
             this.buttonMinus.Size = new System.Drawing.Size(32, 32);
             this.buttonMinus.TabIndex = 11;
@@ -169,7 +171,7 @@
             // 
             // buttonPlus
             // 
-            this.buttonPlus.Location = new System.Drawing.Point(142, 98);
+            this.buttonPlus.Location = new System.Drawing.Point(120, 48);
             this.buttonPlus.Name = "buttonPlus";
             this.buttonPlus.Size = new System.Drawing.Size(32, 32);
             this.buttonPlus.TabIndex = 12;
@@ -179,7 +181,7 @@
             // 
             // buttonMult
             // 
-            this.buttonMult.Location = new System.Drawing.Point(142, 136);
+            this.buttonMult.Location = new System.Drawing.Point(120, 86);
             this.buttonMult.Name = "buttonMult";
             this.buttonMult.Size = new System.Drawing.Size(32, 32);
             this.buttonMult.TabIndex = 13;
@@ -189,7 +191,7 @@
             // 
             // buttonDiv
             // 
-            this.buttonDiv.Location = new System.Drawing.Point(142, 174);
+            this.buttonDiv.Location = new System.Drawing.Point(120, 124);
             this.buttonDiv.Name = "buttonDiv";
             this.buttonDiv.Size = new System.Drawing.Size(32, 32);
             this.buttonDiv.TabIndex = 14;
@@ -199,7 +201,7 @@
             // 
             // buttonEql
             // 
-            this.buttonEql.Location = new System.Drawing.Point(197, 60);
+            this.buttonEql.Location = new System.Drawing.Point(168, 9);
             this.buttonEql.Name = "buttonEql";
             this.buttonEql.Size = new System.Drawing.Size(32, 32);
             this.buttonEql.TabIndex = 15;
@@ -209,7 +211,7 @@
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(197, 98);
+            this.buttonClear.Location = new System.Drawing.Point(180, 87);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(32, 32);
             this.buttonClear.TabIndex = 16;
@@ -219,7 +221,7 @@
             // 
             // floatingPoint
             // 
-            this.floatingPoint.Location = new System.Drawing.Point(50, 174);
+            this.floatingPoint.Location = new System.Drawing.Point(44, 124);
             this.floatingPoint.Name = "floatingPoint";
             this.floatingPoint.Size = new System.Drawing.Size(32, 32);
             this.floatingPoint.TabIndex = 17;
@@ -229,7 +231,7 @@
             // 
             // buttonSign
             // 
-            this.buttonSign.Location = new System.Drawing.Point(88, 174);
+            this.buttonSign.Location = new System.Drawing.Point(82, 124);
             this.buttonSign.Name = "buttonSign";
             this.buttonSign.Size = new System.Drawing.Size(32, 32);
             this.buttonSign.TabIndex = 18;
@@ -237,29 +239,38 @@
             this.buttonSign.UseVisualStyleBackColor = true;
             this.buttonSign.Click += new System.EventHandler(this.buttonSign_Click);
             // 
+            // groupBox
+            // 
+            this.groupBox.Controls.Add(this.button1);
+            this.groupBox.Controls.Add(this.buttonSign);
+            this.groupBox.Controls.Add(this.buttonEql);
+            this.groupBox.Controls.Add(this.button2);
+            this.groupBox.Controls.Add(this.buttonMult);
+            this.groupBox.Controls.Add(this.buttonDiv);
+            this.groupBox.Controls.Add(this.button9);
+            this.groupBox.Controls.Add(this.floatingPoint);
+            this.groupBox.Controls.Add(this.button3);
+            this.groupBox.Controls.Add(this.buttonMinus);
+            this.groupBox.Controls.Add(this.button4);
+            this.groupBox.Controls.Add(this.buttonPlus);
+            this.groupBox.Controls.Add(this.button7);
+            this.groupBox.Controls.Add(this.buttonZero);
+            this.groupBox.Controls.Add(this.button6);
+            this.groupBox.Controls.Add(this.button5);
+            this.groupBox.Controls.Add(this.button8);
+            this.groupBox.Location = new System.Drawing.Point(12, 39);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(217, 164);
+            this.groupBox.TabIndex = 19;
+            this.groupBox.TabStop = false;
+            // 
             // calcForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 224);
-            this.Controls.Add(this.buttonSign);
-            this.Controls.Add(this.floatingPoint);
+            this.ClientSize = new System.Drawing.Size(239, 213);
             this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.buttonEql);
-            this.Controls.Add(this.buttonDiv);
-            this.Controls.Add(this.buttonMult);
-            this.Controls.Add(this.buttonPlus);
-            this.Controls.Add(this.buttonMinus);
-            this.Controls.Add(this.buttonZero);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox);
             this.Controls.Add(this.textBoxOutput);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -267,6 +278,7 @@
             this.Name = "calcForm";
             this.Text = "Doodoroff Calc";
             this.Load += new System.EventHandler(this.calcForm_Load);
+            this.groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,6 +305,7 @@
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button floatingPoint;
         private System.Windows.Forms.Button buttonSign;
+        private System.Windows.Forms.GroupBox groupBox;
     }
 
 
